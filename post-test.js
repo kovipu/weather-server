@@ -1,8 +1,7 @@
 var request = require("request");
 
 var requestData = {
-  temperature: 800,
-  dateTime: ""
+  temperature: 800
 };
 
 request({
