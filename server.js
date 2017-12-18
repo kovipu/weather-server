@@ -1,8 +1,13 @@
 var express = require("express");
 var bodyParser = require("body-parser");
+var path = require("path");
 
 var app = express();
 app.use(bodyParser.json());
+
+// server static files from React app
+app.use(express.static(path.join(__dirname, 'build')));
+
 var data = [{
   temperature: "No weather data yet",
   dateTime: new Date()
@@ -26,6 +31,11 @@ app.post("/api/data", (req, res) => {
     res.status(200).json(req.body);
   }
 });
+
+/* the "catchall" for requests that don't match any others */
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/build/index.html'));
+})
 
 const port = process.env.PORT ? process.env.PORT : 8001;
 const server = app.listen(port, () => {
