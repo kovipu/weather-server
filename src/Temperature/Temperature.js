@@ -1,8 +1,13 @@
 import React from 'React';
 
-temperature = ( props ) => {
+const temperature = (props) => {
     return (
-        <p>{props.temperature}</p>
+        <div className="Temperatures">
+            <h1>Temperature is:</h1>
+            {props.temperatures.map(temperature =>
+                <div key={temperature.dateTime}>{temperature.temperature}</div>
+            )}
+        </div>
     );
 }
 
