@@ -11,12 +11,29 @@ class App extends Component {
     }
   }
 
+  componentDidMount() {
+    fetch('localhost:8001/api/data')
+    .then(results => {
+      return results.json();
+    }).then( data => {
+        let temperature = data.results.map(temp) => {
+          return (
+            <div key={temp.results}>
+              <p>
+                Continue from here...
+              </p>
+            </div>
+          );
+        }
+      })
+    this.setState({temperature: temperature})
+  }
 
   render() {
     return (
       <div className="App">
         <h1 className="App-title">Temperature is:</h1>
-        <Temperature/>
+        <Temperature temperature={this.state.temperature}/>
       </div>
     );
   }
