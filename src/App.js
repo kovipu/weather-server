@@ -6,24 +6,24 @@ import Temperature from './Temperature/Temperature.js'
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      temperatures: []
-    }
+    this.state = getData();
   }
 
   componentDidMount() {
-    fetch('temperaturer.herokuapp.com/api/data')
-      .then((Response) => Response.json())
-      .then(temperatures => this.setState({temperatures}));
+    this.timer = setInterval(() => getData(), 1000 * 60)
   }
 
   render() {
     return (
       <div className="App">
-        <Temperature temperatures={this.state.temperatures} />
+        <Temperature temperature={this.state.temperature} />
       </div>
     );
   }
 }
+
+const getData = async () => fetch('/api/data')
+  .then((Response) => Response.json())
+  .then((temp) => this.setState(temp));
 
 export default App;

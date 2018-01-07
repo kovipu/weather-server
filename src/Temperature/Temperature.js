@@ -1,12 +1,9 @@
 import React from 'react';
 
-const temperature = (props) => {
+const temperature = ({ temperature }) => {
     return (
         <div className="Temperatures">
-            <h1>Temperature is:</h1>
-            {props.temperatures.map(temperature =>
-                <div key={temperature.dateTime}>{temperature.temperature}</div>
-            )}
+            <h1>Temperature is: {temperature}°C</h1>
         </div>
     );
 }
