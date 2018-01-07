@@ -6,11 +6,17 @@ import Temperature from './Temperature/Temperature.js'
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = getData();
+    this.state = this.getData();
   }
 
   componentDidMount() {
-    this.timer = setInterval(() => getData(), 1000 * 60)
+    this.timer = setInterval(() => this.getData(), 1000 * 60)
+  }
+
+  async getData() {
+    fetch('/api/data')
+      .then((Response) => Response.json())
+      .then((temp) => this.setState(temp));
   }
 
   render() {
@@ -21,9 +27,5 @@ class App extends Component {
     );
   }
 }
-
-const getData = async () => fetch('/api/data')
-  .then((Response) => Response.json())
-  .then((temp) => this.setState(temp));
 
 export default App;
