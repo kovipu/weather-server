@@ -6,7 +6,7 @@ const temperature = ({ temperature }) => {
         temp = "No connection to server"
     } else {
         const pos = temperature.length - 2;
-        temp = temperature.slice(0, pos) + '.' + temperature.slice(pos);
+        temp = temperature.substring(0, pos) + '.' + temperature.substring(pos);
     }
     return (
         <div className="Temperatures">
