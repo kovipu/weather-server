@@ -4,10 +4,7 @@ import './App.css';
 import Temperature from './Temperature/Temperature.js'
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = this.getData();
-  }
+  state = this.getData();
 
   componentDidMount() {
     this.timer = setInterval(() => this.getData(), 1000 * 60)
